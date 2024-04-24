@@ -1,0 +1,263 @@
+/* Basic */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a{
+    color: #fff;
+    text-decoration: none;
+}
+.logo img {
+    filter: invert(100%);
+}
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-group {
+    flex: 0 0 calc(50% - 10px);
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+
+/* Header Styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: rgb(24, 231, 17);
+    color: #49df0e;
+}
+
+.logo img {
+    width: 100px;
+}
+
+/* Navigation Styles */
+.navbar {
+    margin-left: auto;
+}
+
+.navbar-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-item {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.navbar-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #1feb18;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    /* Pushed the footer to the bottom */
+    margin-top: auto; 
+}
+
+/* Caravan List Styles */
+.caravan-list-section {
+    padding: 20px;
+    /* Grow to fill remaining space */
+    flex: 1; 
+}
+
+.caravan-list {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+}
+
+
+/* Caravan List Item Styles */
+.caravan-list-item {
+    position: relative;
+    flex-basis: calc(50% - 10px); 
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.caravan-details {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+
+.caravan-image {
+    width: 150px; 
+    height: auto;
+    margin-right: 20px; 
+}
+
+/* Button group styles */
+.btn-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.btn-edit,
+.btn-delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #16ee0f;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-delete {
+    right: 50px;
+    /* left: 0; */
+    background-color: #d63031;
+}
+
+
+.caravan-list-item h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.caravan-list-item p {
+    color: #666;
+    margin-bottom: 5px;
+}
+
+/* Registration Form Styles */
+.registration-section {
+    padding: 20px;
+}
+
+.registration-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-register {
+    background-color: #16dd16;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-register:hover {
+    background-color: #17eb22;
+}
+
+/* Login Form Styles */
+.login-section {
+    padding: 20px;
+}
+
+.login-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-login {
+    background-color: #2fe20b;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-login:hover {
+    background-color: #15dd2f;
+}
+
+/* Caravan Add Form Styles */
+.btn-add-caravan {
+    background-color: #34da0b;
+    color: #59da0f;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.heading{
+    margin-bottom: 20px;
+}
+
+.caravan-image {
+    width: 300px; 
+    height: 200px; 
+}
+.my-caravans-section {
+    padding: 20px;
+    /* Grow to fill remaining space */
+    flex: 1; 
+}
+.required{
+    color: red;
+}

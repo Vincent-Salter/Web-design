@@ -1,0 +1,181 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome Page</title>
+    <link rel="stylesheet" href="CSS-file.css">
+</head>
+
+<style>
+/* Your existing styles */
+.caravan-listing {
+  border: 1px solid #ccc;
+  width: 30%;
+  height: auto;
+  margin: 10px;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.caravan-listing h3 {
+  margin: 0;
+}
+
+.caravan-listing p {
+  margin: 5px 0;
+}
+
+.caravan-listing img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+  border-radius: 5px;
+}
+
+.login-Label {
+  font-size: 15px;
+}
+
+.loginInput {
+  margin-bottom: 10px;
+}
+
+.loginButton2 {
+  width: 100%;
+  height: 30px;
+  background-color: #00DD00;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.latestListing {
+  border-bottom:1px black solid;
+  width: 91.1%;
+  height: 20%;
+  padding: 10px;
+  margin: 10px auto;
+  font-weight: 700;  
+}
+</style>
+
+<body>
+<div id="user-id"></div>
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <form id="loginForm" action="login.php" method="post">
+      <div class="loginInput">
+        <label class="login-Label" for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+      </div>
+      <div class="loginInput">
+        <label class="login-Label" for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+      </div>
+      <button class="loginButton2" type="submit">Login</button>
+    </form>
+  </div>
+</div>
+
+<div class="titleDiv">RentMy Caravan
+  <div class="signUpButton" onclick="redirectToRegisterPage()">Get Started</div>
+  <div class="loginButton" onclick="openModal()">Log In</div>
+</div>
+
+<div class="imgWelcome"> 
+  <div class="introPara">
+    <div class="welcomeText"> Welcome to <b> RentMy Caravan </b> </div>
+    a platform for local residents and businesses to advertise their caravans that need to be rented
+  </div>
+  <div class="signUpButton2" onclick="redirectToRegisterPage()"><h3>Get Started</h3></div>
+</div>
+
+<div class="latestListing"> Latest Listings </div>
+<!-- Container to append the caravans -->
+<div id="caravans-container"></div>
+
+<script>
+// Make an AJAX request to fetch the caravans data
+fetch('Fetch-top-caravans.php')
+  .then(response => response.json())
+  .then(data => {
+    // Check if there is a caravans-container in the document
+    var caravansContainer = document.getElementById('caravans-container');
+    if(!caravansContainer) {
+      console.error('No caravans-container element found in the document.');
+      return;
+    }
+    // Loop through the fetched data and generate HTML content
+    data.forEach(caravan => {
+      const container = document.createElement('div');
+      container.classList.add('caravan-listing');
+      container.innerHTML = `
+        <div class="caravan-details">
+            <h3>${caravan.vehicle_make}</h3>
+            <p>Model: ${caravan.vehicle_model}</p>
+            <p>Body Type: ${caravan.vehicle_bodytype}</p>
+            <img src="${caravan.image_url}" alt="Caravan Image">
+        </div>`;
+      caravansContainer.appendChild(container);
+    });
+  })
+  .catch(error => {
+    console.error('Error fetching caravans:', error);
+  });
+</script>
+
+<script>
+var modal = document.getElementById('loginModal');
+var span = document.getElementsByClassName("close")[0];
+
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+function openModal() {
+  modal.style.display = "block";
+}
+
+function closeModal() {
+  modal.style.display = "none";
+}
+
+function redirectToRegisterPage() {
+  // Redirect to the registration page
+  window.location.href = 'Registration-Page.php';
+}
+</script>
+
+</body>
+</html>
