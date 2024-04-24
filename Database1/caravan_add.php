@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("Location: login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,8 +23,9 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="header">
-        <!-- Header content -->
+<header class="header">
+        <a href="logout.php" class="logOutButton">Log Out</a>
+        <!-- Your other header content -->
     </header>
     <section class="add-caravan-section">
         <div class="container">

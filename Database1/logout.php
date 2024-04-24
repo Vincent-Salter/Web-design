@@ -12,6 +12,6 @@ if (ini_get("session.use_cookies")) {
 }
 session_destroy(); // Finally, destroy the session.
 
-header("Location: WelcomePage-Before.php"); // Redirect to the login page
+header("Location: index.html"); // Redirect to the login page
 exit();
 ?>
