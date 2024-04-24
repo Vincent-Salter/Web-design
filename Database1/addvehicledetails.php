@@ -21,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $num_doors = filter_input(INPUT_POST, 'num_doors', FILTER_SANITIZE_NUMBER_INT);
     $video_url = filter_input(INPUT_POST, 'video_url', FILTER_SANITIZE_URL);
     $image_url = filter_input(INPUT_POST, 'image_url', FILTER_SANITIZE_URL);
+    $vehicle_summary = "Make: {$vehicle_make}, Model: {$vehicle_model}, Body Type: {$vehicle_bodytype}, Fuel Type: {$fuel_type}, Mileage: {$mileage}, Location: {$location}, Year: {$year}, Doors: {$num_doors}";
     
     // Start a new session (if not already started)
     session_start();
@@ -33,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Please fill in all required fields.";
     } else {
         // Prepare an insert statement
-        $sql = "INSERT INTO vehicle_details (user_id, vehicle_make, vehicle_model, vehicle_bodytype, fuel_type, mileage, location, year, num_doors, video_url, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO vehicle_details (user_id, vehicle_make, vehicle_model, vehicle_bodytype, fuel_type, mileage, location, year, num_doors, video_url, image_url, vehicle_summary) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
 
         if (false === $stmt) {
