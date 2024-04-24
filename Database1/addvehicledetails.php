@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Bind variables to the prepared statement as parameters
-        $bind = $stmt->bind_param("isssssssiss", $user_id, $vehicle_make, $vehicle_model, $vehicle_bodytype, $fuel_type, $mileage, $location, $year, $num_doors, $video_url, $image_url);
+        $bind = $stmt->bind_param("isssssssisss", $user_id, $vehicle_make, $vehicle_model, $vehicle_bodytype, $fuel_type, $mileage, $location, $year, $num_doors, $video_url, $image_url, $vehicle_summary);
 
         if (false === $bind) {
             die('Bind param failed: ' . htmlspecialchars($stmt->error));

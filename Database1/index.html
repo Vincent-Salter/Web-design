@@ -11,13 +11,12 @@
 /* Your existing styles */
 .caravan-listing {
   border: 1px solid #ccc;
-  width: 30%;
+  width: 30%; /* Adjust the width as needed */
   height: auto;
   margin: 10px;
   padding: 10px;
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
+  display: inline-block; /* Change from flex to inline-block */
 }
 
 .caravan-listing h3 {
@@ -148,6 +147,7 @@ fetch('Fetch-top-caravans.php')
     console.error('Error fetching caravans:', error);
   });
 </script>
+
 
 <script>
 var modal = document.getElementById('loginModal');

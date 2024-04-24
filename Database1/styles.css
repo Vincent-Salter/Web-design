@@ -237,14 +237,13 @@ body {
 
 /* Caravan Add Form Styles */
 .btn-add-caravan {
-    background-color: #34da0b;
-    color: #59da0f;
+    background-color: #008000; /* This is a shade of green */
+    color: #ffffff; /* This is white */
     padding: 5px 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
-
 .heading{
     margin-bottom: 20px;
 }

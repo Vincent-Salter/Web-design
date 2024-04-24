@@ -1,10 +1,38 @@
 <?php
 session_start();
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("Location: index.html");  // Redirect to the login page
+    header("Location: login.php");  // Redirect to the login page
     exit();  // Terminate further script execution
 }
+
+$db_host = 'localhost';
+$db_user = 'root';
+$db_password = 'root';
+$db_db = 'test_1';
+
+$conn = new mysqli($db_host, $db_user, $db_password, $db_db);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch caravans belonging to the logged-in user
+$userId = $_SESSION['id']; // Assuming this is set upon login
+$sql = "SELECT image_url, video_url, vehicle_summary FROM vehicle_details WHERE user_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $userId); // "i" denotes the parameter type is integer
+$stmt->execute();
+$result = $stmt->get_result();
+
+$caravanDetails = [];
+while ($row = $result->fetch_assoc()) {
+    $caravanDetails[] = $row;
+}
+
+$stmt->close();
+$conn->close();
 ?>
+
 
 
 <!DOCTYPE html>
@@ -73,16 +101,23 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     display: flex; /* Use flexbox layout */
 }
 
+.caravanDetailsContainer {
+    display: flex; /* Use flexbox layout */
+    align-items: flex-start; /* Align items at the start of the container */
+    margin-bottom: 20px; /* Add space between each set of caravan details */
+}
+
 .caravanImage {
-    border: 1px solid #ccc;
-	border-radius:5px;
-    width: 20%;
+    /* Remove border and other styling */
+    width: 30%;
     height: auto;
-    margin: 10px;
+    margin-right: 10px;
     padding: 10px;
     cursor: pointer;
-	text-align:center;
-	font-size:18px;
+    text-align: center;
+    font-size: 18px;
+    background-size: cover; /* Ensure the image covers the entire container */
+    background-position: center; /* Center the image within the container */
 }
 
 .caravanSummary {
@@ -146,17 +181,23 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <div class="addCaravanButton" onclick="redirectToCaravanAddPage()"> Add Caravan 
         <div class="addCaravanPicture">&nbsp;</div>
     </div>
+    
     <div class="caravanListContainer">
-        <div class="caravanImage"> Caravan Image:
-            Caravan Video:        
+    <?php foreach ($caravanDetails as $caravan): ?>
+    <div class="caravanDetailsContainer"> <!-- Wrap each set of caravan details in a container -->
+    <div class="caravanImage" style="background-image: url('<?php echo htmlspecialchars($caravan['image_url']); ?>');">
+    <p>Caravan Video: <?php echo htmlspecialchars($caravan['video_url']); ?></p>
+</div>
+        <div class="caravanSummary">
+            <p>Summary: <?php echo htmlspecialchars($caravan['vehicle_summary']); ?></p>
         </div>
-        <div class="caravanSummary"> </div>
         <div class="caravanButtons">
-            <div class="caravanEditButton" onclick="redirectToCaravanAddPage()"> Edit Details </div>
-            <div class="caravanDeleteButton" onclick="handleDelete()"> Delete </div>
+            <div class="caravanEditButton" onclick="redirectToCaravanAddPage()">Edit Details</div>
+            <div class="caravanDeleteButton" onclick="handleDelete()">Delete</div>
         </div>
     </div>
-	
+    <?php endforeach; ?>
+</div>
 	
 	<script>
 	
@@ -175,8 +216,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         // Add your code here to delete the caravan
             }
         }
-	</script>
-	<script>
+        </script>
+        <script>
         const userIdContainer = document.getElementById('user-id');
         if (userIdContainer) {
           const userId = <?php echo isset($_SESSION['id']) ? json_encode($_SESSION['id']) : 'null'; ?>;
@@ -187,9 +228,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
           }
         }
       </script>
-
-
-
 </body>
 </html>
 	
