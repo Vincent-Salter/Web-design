@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome Page</title>
+    <link rel="stylesheet" href="CSS-file.css">
+</head>
+
 <?php
 session_start();
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
@@ -60,138 +67,125 @@ function emphasize_keywords($summary) {
 }
 
 ?>
+<style>
+    
 
+		/* Dashboard Page */
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Welcome Page</title>
-    <?php 
-    $db_host = 'localhost';
-    $db_user = 'root';
-    $db_password = 'root';
-    $db_db = 'test_1';
-
-    $conn = new mysqli("localhost", "root", "root", "test_1");
-    ?>
-    <link rel="stylesheet" href="CSS-file.css">
-    <style>
         .caravanListContainer {
-    width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-}
+    	width: 100%;
+    	padding: 20px;
+    	box-sizing: border-box;
+		}
 
-.caravanItem {
-    display: flex;
-    background-color: #fff; /* Or any color you prefer */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 20px; /* Space between items */
-    overflow: hidden; /* Keeps the child elements inside the container */
-}
-.logOutButton {
-	border: 1px black solid;
-	width: 15%;
-	float: right;
-	text-align: center;
-	background-color: #D8D8D8;
-	color: #000;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;    
-}
+		.caravanItem {
+    	display: flex;
+    	background-color: #fff; /* Or any color you prefer */
+    	border: 1px solid #ccc;
+   		border-radius: 5px;
+    	margin-bottom: 20px; /* Space between items */
+    	overflow: hidden; /* Keeps the child elements inside the container */
+		}
+		.logOutButton {
+			border: 1px black solid;
+			width: 15%;
+			float: right;
+			text-align: center;
+			background-color: #D8D8D8;
+			color: #000;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;    
+		}
 
-.caravanList{
-	border-bottom:1px black solid;
-    width: 91.1%;
-    height: 20%;
-	padding: 10px;
-	margin: 10px auto;
-	font-weight: 700;
-}
+		.caravanList{
+			border-bottom:1px black solid;
+			width: 91.1%;
+			height: 20%;
+			padding: 10px;
+			margin: 10px auto;
+			font-weight: 700;
+		}
 
-.addCaravanButton {
-    width: 91.1%;
-    float: left;
-    height: 20%;
-    padding: 10px;
-    color: #00DD00;
-    margin: 10px auto auto 50px;
-    font-weight: 700;
-    display: flex; /* Use flexbox for better alignment */
-    align-items: center; /* Center items vertically */
-}
+		.addCaravanButton {
+			width: 91.1%;
+			float: left;
+			height: 20%;
+			padding: 10px;
+			color: #00DD00;
+			margin: 10px auto auto 50px;
+			font-weight: 700;
+			display: flex; 
+			align-items: center; 
+		}
 
-.addCaravanPicture {
-    width: 5%;
-	height:20%;
-    margin-left: 10px; /* Add some space between the text and the image */
-    background-image: url('Add.png'); /* Fix the path and remove alt attribute */
-    background-size: 50%; /* Adjust image size as a percentage of the container */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Prevent image from repeating */
-}
+		.addCaravanPicture {
+			width: 5%;
+			height:20%;
+			margin-left: 10px; 
+			background-image: url('Add.png'); 
+			background-size: 50%; 
+			background-position: center; 
+			background-repeat: no-repeat; 
+		}
 
-.caravanListContainer {
-    border: 1px black solid;
-    border-radius: 5px;
-    width: 91.1%;
-    height: auto;
-    margin: 80px auto;
-    display: flex; /* Use flexbox layout */
-}
+		.caravanListContainer {
+			border: 1px black solid;
+			border-radius: 5px;
+			width: 91.1%;
+			height: auto;
+			margin: 80px auto;
+			display: flex; 
+		}
 
-.caravanDetailsContainer {
-    display: flex; /* Use flexbox layout */
-    align-items: flex-start; /* Align items at the start of the container */
-    margin-bottom: 20px; /* Add space between each set of caravan details */
-}
+		.caravanDetailsContainer {
+			display: flex; 
+			align-items: flex-start; 
+			margin-bottom: 20px; 
+		}
 
-.caravanImage {
-    width: 30%;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-}
+		.caravanImage {
+			width: 30%;
+			background-size: cover;
+			background-position: center;
+			position: relative;
+		}
 
-.caravanSummary {
-    width: 45%;
-    padding: 10px;
-}
-.caravanButtons {
-    width: 25%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-}
+		.caravanSummary {
+			width: 45%;
+			padding: 10px;
+		}
+		.caravanButtons {
+			width: 25%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			padding: 10px;
+		}
 
-.caravanEditButton {
-    background-color: #00DD00;
-    color: white;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+		.caravanEditButton {
+			background-color: #00DD00;
+			color: white;
+			margin-bottom: 10px;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
 
-.caravanDeleteButton {
-    background-color: red;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+		.caravanDeleteButton {
+			background-color: red;
+			color: white;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+</style>
 
-        
-    </style>
-</head>
 <body>
-<div id="user-id"></div> 
+
 <div class="titleDiv">RentMy Caravan
     <a href="logout.php" class="logOutButton">Log Out</a>
 </div>
@@ -269,6 +263,6 @@ function emphasize_keywords($summary) {
       </script>
 </body>
 </html>
-	
+
 </body>
 </html>

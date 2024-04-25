@@ -47,12 +47,13 @@
 				</select>
 			</div>
 
-			<!-- Input group for First Name -->
+
+					<!-- Input group for First Name -->
 			<div class="input-group">
 				<div class="label-group">
 					<label for="firstName">First Name<span>*</span> :</label>
 				</div>
-				<input type="text" id="firstName" name="firstName" class="large-input" required>
+				<input type="text" id="firstName" name="firstName" class="large-input" placeholder="Enter First Name" required maxlength="50">
 			</div>
 
 			<!-- Input group for Last Name -->
@@ -60,7 +61,7 @@
 				<div class="label-group">
 					<label for="lastName">Last Name<span>*</span> :</label>
 				</div>
-				<input type="text" id="lastName" name="lastName" class="large-input" required>
+				<input type="text" id="lastName" name="lastName" class="large-input" placeholder="Enter Last Name" required maxlength="50">
 			</div>
 
 			<!-- Input group for Username -->
@@ -68,15 +69,15 @@
 				<div class="label-group">
 					<label for="username">Username<span>*</span> :</label>
 				</div>
-				<input type="text" id="username" name="username" class="large-input" required>
+				<input type="text" id="username" name="username" class="large-input" placeholder="Choose a Username" required maxlength="50">
 			</div>
-			
+						
 			<!-- Input group for Password -->
 			<div class="input-group">
 				<div class="label-group">
 					<label for="password">Password<span>*</span> :</label>
 				</div>
-				<input type="password" id="password" name="password" class="large-input" required>
+				<input type="password" id="password" name="password" class="large-input" placeholder="Choose a Password"required maxlength="50">
 			</div>
 
 			<!-- Input group for Email -->
@@ -84,7 +85,7 @@
 				<div class="label-group">
 					<label for="email">Email<span>*</span> :</label>
 				</div>
-				<input type="email" id="email" name="email" class="large-input" required>
+				<input type="email" id="email" name="email" class="large-input"placeholder="Enter Email" required maxlength="50">
 			</div>
 
 			<!-- Input group for Telephone -->
@@ -92,7 +93,7 @@
 				<div class="label-group">
 					<label for="telephone">Telephone<span>*</span> :</label>
 				</div>
-				<input type="tel" id="telephone" name="telephone" class="large-input" required>
+				<input type="tel" id="telephone" name="telephone" class="large-input" placeholder="Enter Telephone"required maxlength="50">
 			</div>
 
 			<!-- Input group for Address Line 1 -->
@@ -100,7 +101,7 @@
 				<div class="label-group">
 					<label for="address1">Address Line 1<span>*</span> :</label>
 				</div>
-				<input type="text" id="address1" name="address1" class="large-input" required>
+				<input type="text" id="address1" name="address1" class="large-input" placeholder="Enter Address"required maxlength="100">
 			</div>
 
 			<!-- Input group for Address Line 2 -->
@@ -108,7 +109,7 @@
 				<div class="label-group">
 					<label for="address2">Address Line 2 :</label>
 				</div>
-				<input type="text" id="address2" name="address2" class="large-input">
+				<input type="text" id="address2" name="address2" class="large-input" placeholder="" maxlength="150">
 			</div>
 			
 			<!-- Input group for Address Line 3 -->
@@ -116,7 +117,7 @@
 				<div class="label-group">
 					<label for="address3">Address Line 3 :</label>
 				</div>
-				<input type="text" id="address3" name="address3" class="large-input">
+				<input type="text" id="address3" name="address3" class="large-input" placeholder=""  maxlength="150">
 			</div>
 
 			<!-- Input group for Postcode -->
@@ -124,7 +125,15 @@
 				<div class="label-group">
 					<label for="postcode">Postcode<span>*</span> :</label>
 				</div>
-				<input type="text" id="postcode" name="postcode" class="large-input" required>
+				<input type="text" id="postcode" name="postcode" class="large-input"placeholder="Enter a Postcode" required maxlength="50">
+			</div>
+
+
+			<div class="input-group">
+				<div class="label-group">
+					<label for="profileURL">Profile URL :</label>
+				</div>
+				<input type="text" id="porofileURL" name="profileURL" class="large-input"placeholder="Enter a Profile URL" maxlength="50">
 			</div>
 
 			<!-- Input group for Description -->
@@ -132,7 +141,7 @@
 				<div class="label-group">
 					<label for="description">Description<span>*</span> :</label>
 				</div>
-				<textarea id="description" name="description" class="large-input" rows="3" required></textarea>
+				<textarea id="description" name="description" class="large-input" rows="3" placeholder="Enter a Description"rrequired maxlength="200"></textarea>
 			</div>
 		<div class="registerButtonContainer">
     <input type="submit" class="registerButton" value="Register" name="Register">

@@ -35,11 +35,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sssssssssssss", $title, $gender, $firstName, $lastName, $username, $hashed_password, $email,
                                       $telephone, $address1, $address2, $address3, $postcode, $description);
 
-                                      
+
     // Execute the query and check for success
     if ($stmt->execute()) {
         // Redirect to a new page after successful registration
-        header("Location: WelcomePage-Before.php");
+        header("Location: index.html");
         exit;
     } else {
         echo "Error: " . $stmt->error;
