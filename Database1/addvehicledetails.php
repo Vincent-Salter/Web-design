@@ -48,9 +48,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die('Bind param failed: ' . htmlspecialchars($stmt->error));
         }
 
-        // Attempt to execute the prepared statement
         if ($stmt->execute()) {
-            echo "Vehicle details successfully inserted.";
+            // Redirect to a new page after successful insertion
+            header("Location: WelcomePage-After1.php"); // Change this to your desired redirect target
+            exit;
         } else {
             echo "Error: " . htmlspecialchars($stmt->error);
         }

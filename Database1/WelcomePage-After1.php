@@ -185,7 +185,7 @@ function emphasize_keywords($summary) {
 </style>
 
 <body>
-
+<div id="user-id"></div> 
 <div class="titleDiv">RentMy Caravan
     <a href="logout.php" class="logOutButton">Log Out</a>
 </div>
