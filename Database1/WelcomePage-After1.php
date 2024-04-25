@@ -1,8 +1,8 @@
 <?php
 session_start();
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("Location: login.php");  // Redirect to the login page
-    exit();  // Terminate further script execution
+    header("Location: login.php");
+    exit;
 }
 
 $db_host = 'localhost';
@@ -16,11 +16,30 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch caravans belonging to the logged-in user
-$userId = $_SESSION['id']; // Assuming this is set upon login
-$sql = "SELECT image_url, video_url, vehicle_summary FROM vehicle_details WHERE user_id = ?";
+// Handle deletion
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['vehicle_id'])) {
+    $vehicleId = $_POST['vehicle_id'];
+
+    $sql = "DELETE FROM vehicle_details WHERE vehicle_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $vehicleId);
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        echo "<script>alert('Caravan deleted successfully.');</script>";
+    } else {
+        echo "<script>alert('Error deleting caravan.');</script>";
+    }
+
+    $stmt->close();
+    // Do not close the connection here if it's needed further down
+}
+
+// Fetch caravans
+$userId = $_SESSION['id'];
+$sql = "SELECT vehicle_id, image_url, video_url, vehicle_summary FROM vehicle_details WHERE user_id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $userId); // "i" denotes the parameter type is integer
+$stmt->bind_param("i", $userId);
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -33,9 +52,7 @@ $stmt->close();
 $conn->close();
 
 function emphasize_keywords($summary) {
-    // Define the keywords to emphasize
     $keywords = ['Make:', 'Model:', 'Body Type:', 'Fuel Type:', 'Mileage:', 'Location:', 'Year:', 'Doors:'];
-    // Loop over the keywords and replace them with the same word wrapped in <strong> tags
     foreach ($keywords as $keyword) {
         $summary = str_replace($keyword, "<strong>$keyword</strong>", $summary);
     }
@@ -43,7 +60,6 @@ function emphasize_keywords($summary) {
 }
 
 ?>
-
 
 
 <!DOCTYPE html>
@@ -202,7 +218,8 @@ function emphasize_keywords($summary) {
 </div>
         <div class="caravanButtons">
             <div class="caravanEditButton" onclick="redirectToCaravanAddPage()">Edit Details</div>
-            <div class="caravanDeleteButton" onclick="handleDelete()">Delete</div>
+            <div class="caravanDeleteButton" onclick="handleDelete(this)" data-vehicle-id="<?php echo htmlspecialchars($caravan['vehicle_id']); ?>">Delete</div>
+
         </div>
     </div>
     <?php endforeach; ?>
@@ -220,12 +237,24 @@ function emphasize_keywords($summary) {
     }
 
 
-    function handleDelete() {
-        if (confirm("Are you sure you want to delete this caravan?")) {
-        console.log("Caravan deleted");
-        // Add your code here to delete the caravan
+    function handleDelete(element) {
+    var vehicleId = element.getAttribute('data-vehicle-id');
+    if (confirm("Are you sure you want to delete this caravan?")) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "deletecaravan.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function () {
+            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                console.log(xhr.responseText);
+                // Refresh the page to reflect changes
+                location.reload(); // This line refreshes the page
             }
-        }
+        };
+        xhr.send("vehicle_id=" + vehicleId);
+    }
+}
+
+
         </script>
         <script>
         const userIdContainer = document.getElementById('user-id');
