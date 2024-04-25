@@ -31,6 +31,17 @@ while ($row = $result->fetch_assoc()) {
 
 $stmt->close();
 $conn->close();
+
+function emphasize_keywords($summary) {
+    // Define the keywords to emphasize
+    $keywords = ['Make:', 'Model:', 'Body Type:', 'Fuel Type:', 'Mileage:', 'Location:', 'Year:', 'Doors:'];
+    // Loop over the keywords and replace them with the same word wrapped in <strong> tags
+    foreach ($keywords as $keyword) {
+        $summary = str_replace($keyword, "<strong>$keyword</strong>", $summary);
+    }
+    return $summary;
+}
+
 ?>
 
 
@@ -49,6 +60,20 @@ $conn->close();
     ?>
     <link rel="stylesheet" href="CSS-file.css">
     <style>
+        .caravanListContainer {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.caravanItem {
+    display: flex;
+    background-color: #fff; /* Or any color you prefer */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px; /* Space between items */
+    overflow: hidden; /* Keeps the child elements inside the container */
+}
 .logOutButton {
 	border: 1px black solid;
 	width: 15%;
@@ -108,61 +133,44 @@ $conn->close();
 }
 
 .caravanImage {
-    /* Remove border and other styling */
     width: 30%;
-    height: auto;
-    margin-right: 10px;
-    padding: 10px;
-    cursor: pointer;
-    text-align: center;
-    font-size: 18px;
-    background-size: cover; /* Ensure the image covers the entire container */
-    background-position: center; /* Center the image within the container */
+    background-size: cover;
+    background-position: center;
+    position: relative;
 }
 
 .caravanSummary {
-    border: 1px solid #ccc; 
-	border-radius:5px;
-    width: 60%;
-    height: auto;
-    margin: 10px;
+    width: 45%;
+    padding: 10px;
+}
+.caravanButtons {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
 }
 
-.caravanButtons{
-    width: 18%;
-    height: auto;
-    margin: 10px;
-    padding:0px;
+.caravanEditButton {
+    background-color: #00DD00;
+    color: white;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.caravanEditButton{
-	border: 1px solid #ccc;
-	border-radius: 5px;
-    width: 50%;
-    height: auto;
-    padding:5px;
-	margin:auto;
-	font-size:18px;
-	text-align: center;
-	background-color: #00DD00;
-	color: #fff;
-	cursor: pointer;
+.caravanDeleteButton {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.caravanDeleteButton{
-	border: 1px solid #ccc;
-	border-radius: 5px;
-    width: 50%;
-    height: auto;
-    padding:5px;
-	margin: 10px auto;
-	font-size:18px;
-	text-align: center;
-	background-color: red;
-	color: #fff;
-	cursor: pointer;
-}
         
     </style>
 </head>
@@ -182,15 +190,16 @@ $conn->close();
         <div class="addCaravanPicture">&nbsp;</div>
     </div>
     
-    <div class="caravanListContainer">
+  <!-- Single Caravan Listing Container -->
+<div class="caravanListContainer">
     <?php foreach ($caravanDetails as $caravan): ?>
-    <div class="caravanDetailsContainer"> <!-- Wrap each set of caravan details in a container -->
-    <div class="caravanImage" style="background-image: url('<?php echo htmlspecialchars($caravan['image_url']); ?>');">
-    <p>Caravan Video: <?php echo htmlspecialchars($caravan['video_url']); ?></p>
-</div>
-        <div class="caravanSummary">
-            <p>Summary: <?php echo htmlspecialchars($caravan['vehicle_summary']); ?></p>
+    <div class="caravanItem">
+        <div class="caravanImage" style="background-image: url('<?php echo htmlspecialchars($caravan['image_url']); ?>');">
+            <!-- Optional: If you want to add video link or other details, do it here -->
         </div>
+        <div class="caravanSummary">
+    <p>Summary: <?php echo emphasize_keywords(htmlspecialchars($caravan['vehicle_summary'])); ?></p>
+</div>
         <div class="caravanButtons">
             <div class="caravanEditButton" onclick="redirectToCaravanAddPage()">Edit Details</div>
             <div class="caravanDeleteButton" onclick="handleDelete()">Delete</div>
@@ -198,6 +207,7 @@ $conn->close();
     </div>
     <?php endforeach; ?>
 </div>
+
 	
 	<script>
 	

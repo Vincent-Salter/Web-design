@@ -9,14 +9,33 @@
 
 <style>
 /* Your existing styles */
+
+#caravans-container {
+  display: flex; /* Use flexbox to align children side by side */
+  flex-wrap: wrap; /* Allow items to wrap onto new lines */
+  justify-content: space-between; /* Space out the items evenly */
+  width: 91.1%; /* Set the width of the container */
+  margin: 0 auto; /* Center the container on the page */
+  gap: 10px; /* Optional: adds space between items */
+}
+
 .caravan-listing {
   border: 1px solid #ccc;
-  width: 30%; /* Adjust the width as needed */
+  width: 91.1%; /* Set the width to 91.1% of the container */
   height: auto;
-  margin: 10px;
+  margin: 10px auto; /* Center the listing with automatic margin */
   padding: 10px;
   cursor: pointer;
-  display: inline-block; /* Change from flex to inline-block */
+  display: block; /* Use block to fill the width */
+  text-align: center; /* Center the content inside the listing */
+}
+
+.caravan-listing img {
+  width: 100%; /* Make the image take up 100% of the div's width */
+  height: 400px; /* Set a fixed height for the images */
+  object-fit: cover; /* This will make the image cover the allotted area */
+  display: block; /* Display block to remove bottom space */
+  margin: 10px auto; /* Center the image with automatic margin */
 }
 
 .caravan-listing h3 {
@@ -25,12 +44,6 @@
 
 .caravan-listing p {
   margin: 5px 0;
-}
-
-.caravan-listing img {
-  max-width: 100%;
-  height: auto;
-  margin-top: 10px;
 }
 
 .modal {
@@ -73,13 +86,14 @@
 }
 
 .latestListing {
-  border-bottom:1px black solid;
+  border-bottom: 1px black solid;
   width: 91.1%;
-  height: 20%;
+  height: auto;
   padding: 10px;
-  margin: 10px auto;
+  margin: 10px auto; /* Center the latest listing section */
   font-weight: 700;  
 }
+
 </style>
 
 <body>
@@ -116,7 +130,7 @@
 
 <div class="latestListing"> Latest Listings </div>
 <!-- Container to append the caravans -->
-<div id="caravans-container"></div>
+<div id="caravans-container">
 
 <script>
 // Make an AJAX request to fetch the caravans data
@@ -147,6 +161,7 @@ fetch('Fetch-top-caravans.php')
     console.error('Error fetching caravans:', error);
   });
 </script>
+</div>
 
 
 <script>
