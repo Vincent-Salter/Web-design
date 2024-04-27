@@ -127,7 +127,7 @@
               const container = document.createElement('div');
               container.classList.add('caravan-listing');
               container.onclick = function() {
-                redirectToCaravanPage('caravan_details.php?id=' + caravan.id); // Replace 'caravan_details.php' with your caravan details page
+                redirectToCaravanPage('caravan_details.php?id=' + caravan.id); 
               };
               container.innerHTML = `
                 <div class="caravan-details">

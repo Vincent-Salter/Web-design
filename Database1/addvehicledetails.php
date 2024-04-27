@@ -17,13 +17,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fuel_type = filter_input(INPUT_POST, 'fuel_type', FILTER_SANITIZE_STRING);
     $mileage = filter_input(INPUT_POST, 'mileage', FILTER_SANITIZE_STRING);
     $location = filter_input(INPUT_POST, 'location', FILTER_SANITIZE_STRING);
-    $year = filter_input(INPUT_POST, 'year', FILTER_SANITIZE_STRING); // year as string according to your SQL schema
+    $year = filter_input(INPUT_POST, 'year', FILTER_SANITIZE_STRING); 
     $num_doors = filter_input(INPUT_POST, 'num_doors', FILTER_SANITIZE_NUMBER_INT);
     $video_url = filter_input(INPUT_POST, 'video_url', FILTER_SANITIZE_URL);
     $image_url = filter_input(INPUT_POST, 'image_url', FILTER_SANITIZE_URL);
     $vehicle_summary = "Make: {$vehicle_make}, Model: {$vehicle_model}, Body Type: {$vehicle_bodytype}, Fuel Type: {$fuel_type}, Mileage: {$mileage}, Location: {$location}, Year: {$year}, Doors: {$num_doors}";
     
-    // Start a new session (if not already started)
+    // Start a new session
     session_start();
 
     // Fetch user ID from session
@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt->execute()) {
             // Redirect to a new page after successful insertion
-            header("Location: WelcomePage-After1.php"); // Change this to your desired redirect target
+            header("Location: WelcomePage-After1.php"); 
             exit;
         } else {
             echo "Error: " . htmlspecialchars($stmt->error);

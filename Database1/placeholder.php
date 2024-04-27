@@ -172,7 +172,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     function handleDelete() {
         if (confirm("Are you sure you want to delete this caravan?")) {
         console.log("Caravan deleted");
-        // Add your code here to delete the caravan
+        
             }
         }
 	</script>

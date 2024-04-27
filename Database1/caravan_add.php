@@ -25,7 +25,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 <body>
 <header class="header">
         <a href="logout.php" class="logOutButton">Log Out</a>
-        <!-- Your other header content -->
+        
     </header>
     <section class="add-caravan-section">
         <div class="container">
@@ -34,11 +34,11 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                 <div class="form-row">
                     <div class="form-group">
                         <label for="make">Make</label>
-                        <input type="text" id="make" name="vehicle_make" required> <!-- Changed name to 'vehicle_make' -->
+                        <input type="text" id="make" name="vehicle_make" required>
                     </div>
                     <div class="form-group">
                         <label for="model">Model</label>
-                        <input type="text" id="model" name="vehicle_model" required> <!-- Changed name to 'vehicle_model' -->
+                        <input type="text" id="model" name="vehicle_model" required>
                     </div>
                 </div>
                 <div class="form-row">
@@ -50,7 +50,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                         <label for="fuel_type">Fuel Type</label>
                         <input type="text" id="fuel_type" name="fuel_type" required>
                     </div>
-                </div> <!-- This closing tag was missing -->
+                </div> 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="mileage">Mileage</label>
@@ -63,7 +63,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                 </div>
                 <div class="form-group">
                     <label for="year">Year</label>
-                    <input type="number" id="year" name="year" required pattern="\d{4}"> <!-- If you want exactly 4 digits -->
+                    <input type="number" id="year" name="year" required pattern="\d{4}"> 
                 </div>
                 <div class="form-group">
                     <label for="doors">Doors</label>
